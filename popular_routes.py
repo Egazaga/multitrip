@@ -2,7 +2,7 @@ import json
 
 import requests
 
-from utils.better_place_converter import PlaceConverter
+from utils.place_converter import PlaceConverter
 from utils.place_converter import iata_to_place
 
 # Define the endpoint URL

@@ -15,12 +15,12 @@ params = {
     'return_date ': '2024-08',
     'market': 'ru',                          # Data source market
     'token': token,
-    "page": 0
+    "page": 0  # useless?
 }
 
 # Make the GET request
 response = requests.get(url, params=params)
-data = json.loads(response.text)
+data = json.loads(response.text)["data"]
 
 # Print the response text (JSON data)
 with open('data/anywhere.json', 'w') as f:
