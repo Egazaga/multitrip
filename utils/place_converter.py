@@ -2,6 +2,8 @@ import pandas as pd
 import requests
 from pycountry import countries
 
+from utils.bans import banned_countries
+
 # pd print options
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
@@ -48,8 +50,12 @@ class PlaceConverter:
     def iata_to_place(self, iata):  # country and city
         return self.df[self.df['airport_code'] == iata][['country_name', 'city_name']].values
 
+    def get_banned_airports(self):
+        return set(self.df[self.df['country_name'].isin(banned_countries)]['airport_code'].tolist())
+
 
 if __name__ == '__main__':
     pc = PlaceConverter()
     print(pc.country_code_to_airport_names('RU'))
     print(pc.iata_to_place('LED'))
+    print(pc.get_banned_airports())
