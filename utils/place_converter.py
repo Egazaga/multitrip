@@ -47,15 +47,23 @@ class PlaceConverter:
     def country_code_to_airport_names(self, country_code):
         return self.df[self.df['country_code'] == country_code]['airport_name'].tolist()
 
-    def iata_to_place(self, iata):  # country and city
-        return self.df[self.df['airport_code'] == iata][['country_name', 'city_name']].values
+    def iata_to_place(self, iata):  # usually wrong
+        return self.df[self.df['airport_code'] == iata][['country_name', 'city_name']].values[0].tolist()
 
-    def get_banned_airports(self):
+    def city_code_to_place(self, iata):
+        if iata in self.df['city_code'].tolist():
+            return self.df[self.df['city_code'] == iata][['country_name', 'city_name']].values[0].tolist()
+        return None
+
+    def get_banned_airports(self):  # usually wrong
         return set(self.df[self.df['country_name'].isin(banned_countries)]['airport_code'].tolist())
+
+    def get_banned_cities(self):
+        return set(self.df[self.df['country_name'].isin(banned_countries)]['city_code'].tolist())
 
 
 if __name__ == '__main__':
     pc = PlaceConverter()
     print(pc.country_code_to_airport_names('RU'))
-    print(pc.iata_to_place('LED'))
-    print(pc.get_banned_airports())
+    print(pc.city_code_to_place('LED'))
+    print(pc.get_banned_cities())

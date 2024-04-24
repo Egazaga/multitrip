@@ -1,26 +1,35 @@
-jew_bans = {
-    "Iran",
-    "Lebanon",
-    "Syria",
-    "Yemen",
-    "Palestinian Territories",
-    "Iraq",
-    "Afghanistan",
-    "Somalia",
-    "Sudan",
-    "Libya",
+from itertools import chain
 
-    "Saudi Arabia",
-    "Kuwait",
-    "Pakistan",
-    "Malaysia",
-    "Brunei",
-    "Bangladesh",
-    "Algeria"
+__bans_dict = {
+    "jew_bans": [
+        "Iran",
+        "Lebanon",
+        "Syria",
+        "Yemen",
+        "Palestinian Territories",
+        "Iraq",
+        "Afghanistan",
+        "Somalia",
+        "Sudan",
+        "Libya",
+
+        "Saudi Arabia",
+        "Kuwait",
+        "Pakistan",
+        "Malaysia",
+        "Brunei",
+        "Bangladesh",
+        "Algeria"
+    ],
+
+    "goida_bans": [
+        "Poland",
+        "Russian Federation",
+        "Ukraine"
+    ],
+
+    "other_bans": [
+    ]
 }
 
-russian_bans = {
-    "Poland"
-}
-
-banned_countries = jew_bans.union(russian_bans)
+banned_countries = set(chain(*__bans_dict.values()))

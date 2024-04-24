@@ -5,18 +5,21 @@ import requests
 with open('data/token.txt') as f:
     token = f.read()
 
-# Define the endpoint URL
-# url = "http://api.travelpayouts.com/v1/prices/cheap"
-# params = {
-#     'currency': 'rub',                       # Currency for ticket prices
-#     'origin': 'LED',                         # Origin IATA code
-#     'depart_date ': '2024-08',
-#     'return_date ': '2024-08',
-#     'market': 'ru',                          # Data source market
-#     'token': token,
-#     "page": 0  # useless?
-# }
+# trash data
+url = "http://api.travelpayouts.com/v1/prices/cheap"
+# origin = 'BEG'
+origin = 'LED'
+params = {
+    'currency': 'rub',                       # Currency for ticket prices
+    'origin': origin,                         # Origin IATA code
+    'depart_date ': '2024-08',
+    'return_date ': '2024-08',
+    'market': 'ru',                          # Data source market
+    'token': token,
+    "page": 0  # useless?
+}
 
+# # 1 билет в день
 # url = "http://api.travelpayouts.com/aviasales/v3/get_latest_prices"
 # params = {
 #     "origin": "LED",
@@ -31,17 +34,19 @@ with open('data/token.txt') as f:
 #     "token": token
 # }
 
-url = "https://api.travelpayouts.com/aviasales/v3/prices_for_dates"
-params = {
-    "origin": "MOW",
-    "destination": "LED",
-    "departure_at": "2024-05-01",
-    # "page": 1,
-    # "limit": 1000,
-    # "sorting": "route",  # price, route
-    # "unique": "false",
-    "token": token
-}
+# # 1 билет в день
+# url = "https://api.travelpayouts.com/aviasales/v3/prices_for_dates"
+# params = {
+#     "origin": "MOW",
+#     # "destination": "LED",
+#     "departure_at": "2024-08",
+#     "page": 1,
+#     "limit": 1000,
+#     "direct": "false",
+#     "sorting": "price",  # price, route
+#     # "unique": "false",
+#     "token": token
+# }
 
 # Make the GET request
 response = requests.get(url, params=params)
@@ -49,5 +54,5 @@ data = json.loads(response.text)["data"]
 print(len(data))
 
 # Print the response text (JSON data)
-with open('data/anywhere3.json', 'w') as f:
+with open(f'data/anywhere_{origin}.json', 'w') as f:
     json.dump(data, f, indent=4, ensure_ascii=False)
