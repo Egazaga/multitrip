@@ -10,12 +10,12 @@ with open('data/token.txt') as f:
 
 # Define the parameters for the request
 # origin = 'LED'
-# origin = 'BEG'
-origin = 'TLV'
+origin = 'BEG'
+# origin = 'TLV'
 params = {
     'origin': origin,
-    'depart_date': '2024-07',
-    'return_date': '2024-07',
+    'depart_date': '2024-05',
+    'return_date': '2024-05',
     'token': token,
     'limit': 1000
 }

@@ -25,10 +25,12 @@ __bans_dict = {
     "goida_bans": [
         "Poland",
         "Russian Federation",
-        "Ukraine"
+        "Ukraine",
+        "Türkiye"
     ],
 
     "other_bans": [
+        "Albania"
     ]
 }
 
